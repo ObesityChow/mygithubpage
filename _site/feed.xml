@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Edward Zh</title>
+    <description>一个普通的程序员 / 喜欢粤语歌
+</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Fri, 28 Oct 2016 23:33:23 +0800</pubDate>
+    <lastBuildDate>Fri, 28 Oct 2016 23:33:23 +0800</lastBuildDate>
+    <generator>Jekyll v3.3.0</generator>
+    
+      <item>
+        <title>Hello world!</title>
+        <description>&lt;p&gt;一直觉得开博客是一个很矫情的事情,而且我的文笔仅在写正经文章的时候有那种词汇跟着思维蹦出来的感觉.(是的我也感觉非常weird)我感觉还是有必要把这个博客的创建原因,以及大概的内容做一个综述,也算是我当了这几年学生干部的一个能力的回馈吧…(&lt;em&gt;遇事喜欢搞文档&lt;/em&gt;)&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;为什么开&lt;/h2&gt;
+&lt;p&gt;促成我开这个博客的原因.一个是感觉从初二开始涉足程序员的领域,从vb6一直到现在iOS / Java双修,作品出了很多个,然而没什么东西沉淀下来,基本都在脑子里藏着.没留下什么文档,踩过的坑也只有自己知道.不符合现在愈演愈烈的开源趋势.所以,虽然本人水平并不高,但是对初学者还是有点东西可讲的.也算是给圈子做点微小的贡献.另外呢,前阵子统计了一下几个社交平台的流量,微博也发了1.8k条,基本弃用的QQ空间也有大约4.1k条状态.朋友圈数字未知,但是肯定有500条以上.感觉社交平台的140字有时候并不足以记录生活,所以权当是日记来写,如果有幸有陌生人关注这个博客,我也非常乐意分享我的生活.最后也是因为终于申请到了&lt;a href=&quot;https://github.com&quot; title=&quot;Github&quot;&gt;Github&lt;/a&gt;的&lt;a href=&quot;http://education.github.com&quot; title=&quot;Education Pack&quot;&gt;Education Pack&lt;/a&gt;,也弄到了满意的个人域名&lt;a href=&quot;http://edzh.me&quot; title=&quot;edzh.me&quot;&gt;edzh.me&lt;/a&gt;(我的全名是Edward Zhou),也算是有机会能够过上我见过的大部分程序员的生活了&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;要写什么&lt;/h2&gt;
+&lt;p&gt;这个博客不仅仅是技术博客,有时候也会发点生活吐槽,我也会尽量写的陌生人也知道发生了什么.就当是锻炼文笔了吧.技术上,我会把当前手头项目所有踩过的坑,以及仅仅通过百度无法达成的需求的解决方案发上来,这也是很多陌生人可能访问这个博客的原因.
+&lt;br /&gt;
+此外,就像首页的标签”&lt;strong&gt;好奇心 | 码代码 | 按快门 | 穷 | Apple | 软狗 | +1s&lt;/strong&gt;“,这就是我.有什么有意思的小玩意儿我都会共享上来.有兴趣的可以持续关注.想交流的可以发邮件到&lt;a href=&quot;mailto:i@edzh.me&quot; title=&quot;联系我&quot;&gt;i@edzh.me&lt;/a&gt;,本来这个模板是有评论功能的,我关了.&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 28 Oct 2016 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/10/Foreword/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/10/Foreword/</guid>
+        
+        <category>瞎逼逼</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
