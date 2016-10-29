@@ -62,7 +62,7 @@ nav:
     - {title: 标签, description: tags, url: '/tags'}
 
 
-友情链接
+#友情链接
 flink:
     - {title: Neuron Black's Blog, description: Neuron Black的博客, url: 'http://neuronblack.cc'}
 
