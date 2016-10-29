@@ -62,9 +62,9 @@ nav:
     - {title: 标签, description: tags, url: '/tags'}
 
 
-# 友情链接
-# flink:
-#     - {title: TakingDataSDK博客, description: TakingDataSDK博客, url: 'http://talkingdata.me'}
+友情链接
+flink:
+    - {title: Neuron Black's Blog, description: Neuron Black的博客, url: 'http://neuronblack.cc'}
 
 
 # Pagination
