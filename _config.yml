@@ -10,6 +10,7 @@ avatarTitle: obesitychow
 avatarDesc: iOS / Java
 url: "http://edzh.me"
 
+backgroundImage: /assets/images/background-cover.jpg
 # # Comment
 # comment:
 #     # disqus: leopard
@@ -17,7 +18,7 @@ url: "http://edzh.me"
 
 # Social
 social:
-    weibo: edchow
+    # weibo: edchow
     github: ObesityChow
     # twitter:
     mail: i@edzh.me

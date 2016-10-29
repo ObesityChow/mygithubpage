@@ -1,4 +1,4 @@
-<header class="panel-cover {% if page.layout == 'post' or page.layout == 'page' %}panel-cover--collapsed{% endif %}" style="background-image: url('/assets/images/background-cover.jpg')">
+<header class="panel-cover {% if page.layout == 'post' or page.layout == 'page' %}panel-cover--collapsed{% endif %}" style="background-image: url('{{ site.backgroundImage }}')">
   <div class="panel-main">
 
     <div class="panel-main__inner panel-inverted">
@@ -67,4 +67,5 @@
     <div class="panel-cover--overlay cover-disabled"></div>
     {% endif %}
   </div>
+  
 </header>
