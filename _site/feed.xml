@@ -6,9 +6,150 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 29 Oct 2016 23:11:03 +0800</pubDate>
-    <lastBuildDate>Sat, 29 Oct 2016 23:11:03 +0800</lastBuildDate>
+    <pubDate>Thu, 24 Nov 2016 00:22:16 +0800</pubDate>
+    <lastBuildDate>Thu, 24 Nov 2016 00:22:16 +0800</lastBuildDate>
     <generator>Jekyll v3.3.0</generator>
+    
+      <item>
+        <title>不务正业 | 文档生成工具apiDoc</title>
+        <description>&lt;p&gt;本来应该是在研究webrtc的,但是混蛋项目前负责人给我甩了个美国的ftp让我去扒代码,来来来感受一下这个速度
+&lt;img src=&quot;http://img.nufe-cst.cn/ab2b1c6c1d51.png&quot; alt=&quot;downloadSnap&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;于是在扒代码的同时,着手开工写手头另一个项目的文档,之前的api都是用md手写的,后来随着项目越发复杂,这个方式不再高效,于是着手调研了一番自动文档生成工具.&lt;/p&gt;
+
+&lt;p&gt;进入我视野并且试用过的有2种&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://swagger.io/&quot;&gt;swagger&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://apidocjs.com&quot;&gt;apiDoc&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;先说&lt;a href=&quot;http://swagger.io/&quot;&gt;swagger&lt;/a&gt;,它利用java注解来实现文档的自动生成,只要项目部署到服务器上,访问对应url就能直接看到项目文档.我不选择这个工具的原因是:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;直接把文档作为代码的一部分放入工程,随着项目日渐庞大势必增加编译时间和编译结果尺寸.&lt;/li&gt;
+  &lt;li&gt;文档内容并不随时跟着接口改变,相当于同时维护两份代码,如何保持一致性是一个难以解决的问题.&lt;/li&gt;
+  &lt;li&gt;嵌入代码相当于在生产环境也要占用一部分资源进行文档的存储渲染,浪费资源.虽然可以通过条件编译解决这个问题,但是我懒:)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;再讲&lt;a href=&quot;http://apidocjs.com&quot;&gt;apiDoc&lt;/a&gt;,apiDoc采用注释方式来解决文档生成问题,一个常见的文档是这样的&lt;/p&gt;
+&lt;div&gt;
+  &lt;pre data-line=&quot;&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;/**
+ *
+ * @api {get} /bird/:speciesId birdById
+ * @apiName birdById
+ * @apiGroup bird
+ * @apiVersion 0.1.0
+ * @apiDescription 关键词查找 可用拉丁名 英文名 中文名查找鸟种
+ * @apiPermission anyone
+ * @apiParam :speciesId 鸟种id
+ * @apiParamExample {json} Request Example
+ *    GET /bird/:speciesId
+ *
+ * @apiSuccess {String} code 88
+ * @apiSuccess {String} message ok
+ * @apiSuccess {Object} data ok
+ * @apiSuccess {String} data.englishName
+ * @apiSuccess {String} data.familia 科
+ * @apiSuccess {String} data.genus 属
+ * @apiSuccess {int} data.id 鸟种id
+ * @apiSuccess {String} data.latinName
+ * @apiSuccess {String} data.localName
+ * @apiSuccess {String} data.order 目
+ * @apiSuccess {String} data.shape 体型大小
+ * @apiSuccessExample Success-Response:
+ *  HTTP/1.1 200 OK
+ *{
+ *    &amp;quot;code&amp;quot;: 88,
+ *    &amp;quot;data&amp;quot;: [
+ *        {
+ *            &amp;quot;englishName&amp;quot;: &amp;quot;Snow Partridge&amp;quot;,
+ *            &amp;quot;familia&amp;quot;: &amp;quot;雉科&amp;quot;,
+ *            &amp;quot;genus&amp;quot;: &amp;quot;雪鹑属&amp;quot;,
+ *            &amp;quot;id&amp;quot;: 1,
+ *            &amp;quot;latinName&amp;quot;: &amp;quot;Lerwa lerwa&amp;quot;,
+ *            &amp;quot;localName&amp;quot;: &amp;quot;雪鹑&amp;quot;,
+ *            &amp;quot;order&amp;quot;: &amp;quot;鸡形目&amp;quot;,
+ *            &amp;quot;shape&amp;quot;: &amp;quot;斑鸠与鸬鹚之间&amp;quot;
+ *        }
+ *    ],
+ *    &amp;quot;message&amp;quot;: &amp;quot;ok&amp;quot;
+ *}
+ */&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;apiDoc的优势在于:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;作为注释存在于源文件,修改接口的同时直接修改文档,不存在同时操作两份文件的问题.同时,编译时直接忽略注释,对后续的业务流程没有影响.&lt;/li&gt;
+  &lt;li&gt;文档内容并不随时跟着接口改变这个问题虽然还是没有解决,但是相比于其他优势,这个就当妥协了吧.&lt;/li&gt;
+  &lt;li&gt;除了代码本身,不占用任何资源&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Get Started&lt;/strong&gt;
+apiDoc基于node.js,所以我们需要一个npm,还没有的同学自己百度怎么下载&lt;/p&gt;
+
+&lt;p&gt;在shell执行&lt;/p&gt;
+&lt;div&gt;
+  &lt;pre data-line=&quot;&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;npm install apidoc -g&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;由于国内网络问题,这个步骤可能需要等待比较长的时间.&lt;/p&gt;
+
+&lt;p&gt;在项目根目录创建apidoc.json(如果是node.js项目,可以直接在package.json中加入apiDoc的配置项),常见的配置为&lt;/p&gt;
+&lt;div&gt;
+  &lt;pre data-line=&quot;&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;{
+  &amp;quot;name&amp;quot;: &amp;quot;example&amp;quot;,
+  &amp;quot;version&amp;quot;: &amp;quot;0.1.0&amp;quot;,
+  &amp;quot;description&amp;quot;: &amp;quot;A basic apiDoc example&amp;quot;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;在代码中使用注释编写文档(各种语言的注释格式可见&lt;a href=&quot;http://apidocjs.com&quot;&gt;apiDoc&lt;/a&gt;,此处以Java为例),具体语法见&lt;a href=&quot;http://apidocjs.com/#params&quot;&gt;这里&lt;/a&gt;,&lt;a href=&quot;http://blog.csdn.net/soslinken/article/details/50468896&quot;&gt;中文版&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;编写完后,在shell执行&lt;/p&gt;
+&lt;div&gt;
+  &lt;pre data-line=&quot;&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;apidoc -i ./ -o ./doc/&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;此处参数意义为:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;-i [inputPath]&lt;/li&gt;
+  &lt;li&gt;-o [outputPath]
+此时就可以在根目录/doc文件夹看到生成的文档了,打开index.html,就能看到所有的api以group-name的方式升序排列.可以编写脚本直接上传到服务端.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;附一个文档生成结果:&lt;a href=&quot;http://api.ebirdnote.cn/doc&quot;&gt;api.ebirdnote.cn/doc&lt;/a&gt;,这就是通过默认模板生成的RESTful api document,其实apidoc内置了调试器,但是在post请求中无法使用json作为body编码方式,我暂时也没时间解决这个问题,有解决方案的同学欢迎给我发一个链接到&lt;a href=&quot;mailto://i@edzh.me&quot;&gt;我的邮箱&lt;/a&gt;,感激不尽&lt;/p&gt;
+</description>
+        <pubDate>Tue, 01 Nov 2016 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/11/apiDoc/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/11/apiDoc/</guid>
+        
+        <category>coding</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>最近真的很忙</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;作为一个当了学生干部的程序员,我感觉我是精神分裂的状态.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;本来对于博文的内容的定位是不做那些没什么质量的东西.最想做的是对于最近研究的领域(比如Webrtc在iOS上的定制..)的一些研究结果的整理收录,顺便带一点其他技术方面的笔记/资源.这也是开这个博客本来的目的.&lt;/p&gt;
+
+&lt;p&gt;然而,我也不知道,我一个程序员,怎么就当上了学生会主席呢?忙于琐事,无闲研究项目.本来准备写一篇jekyll博客搭建的细节教程,以弥补我看到的教程的缺陷.然而这个计划可能只能推迟一个星期了.&lt;/p&gt;
+
+&lt;p&gt;希望和我交换友链的朋友们.不要删&lt;/p&gt;
+
+&lt;p&gt;23333333&lt;/p&gt;
+</description>
+        <pubDate>Tue, 01 Nov 2016 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2016/11/Forecast/</link>
+        <guid isPermaLink="true">http://localhost:4000/2016/11/Forecast/</guid>
+        
+        <category>瞎逼逼</category>
+        
+        
+      </item>
     
       <item>
         <title>Hello world!</title>
