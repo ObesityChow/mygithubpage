@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 24 Nov 2016 00:22:16 +0800</pubDate>
-    <lastBuildDate>Thu, 24 Nov 2016 00:22:16 +0800</lastBuildDate>
+    <pubDate>Thu, 24 Nov 2016 00:34:52 +0800</pubDate>
+    <lastBuildDate>Thu, 24 Nov 2016 00:34:52 +0800</lastBuildDate>
     <generator>Jekyll v3.3.0</generator>
     
       <item>
@@ -31,8 +31,8 @@
 &lt;/ol&gt;
 
 &lt;p&gt;再讲&lt;a href=&quot;http://apidocjs.com&quot;&gt;apiDoc&lt;/a&gt;,apiDoc采用注释方式来解决文档生成问题,一个常见的文档是这样的&lt;/p&gt;
-&lt;div&gt;
-  &lt;pre data-line=&quot;&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;/**
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;cm&quot;&gt;/**
  *
  * @api {get} /bird/:speciesId birdById
  * @apiName birdById
@@ -58,23 +58,22 @@
  * @apiSuccessExample Success-Response:
  *  HTTP/1.1 200 OK
  *{
- *    &amp;quot;code&amp;quot;: 88,
- *    &amp;quot;data&amp;quot;: [
+ *    &quot;code&quot;: 88,
+ *    &quot;data&quot;: [
  *        {
- *            &amp;quot;englishName&amp;quot;: &amp;quot;Snow Partridge&amp;quot;,
- *            &amp;quot;familia&amp;quot;: &amp;quot;雉科&amp;quot;,
- *            &amp;quot;genus&amp;quot;: &amp;quot;雪鹑属&amp;quot;,
- *            &amp;quot;id&amp;quot;: 1,
- *            &amp;quot;latinName&amp;quot;: &amp;quot;Lerwa lerwa&amp;quot;,
- *            &amp;quot;localName&amp;quot;: &amp;quot;雪鹑&amp;quot;,
- *            &amp;quot;order&amp;quot;: &amp;quot;鸡形目&amp;quot;,
- *            &amp;quot;shape&amp;quot;: &amp;quot;斑鸠与鸬鹚之间&amp;quot;
+ *            &quot;englishName&quot;: &quot;Snow Partridge&quot;,
+ *            &quot;familia&quot;: &quot;雉科&quot;,
+ *            &quot;genus&quot;: &quot;雪鹑属&quot;,
+ *            &quot;id&quot;: 1,
+ *            &quot;latinName&quot;: &quot;Lerwa lerwa&quot;,
+ *            &quot;localName&quot;: &quot;雪鹑&quot;,
+ *            &quot;order&quot;: &quot;鸡形目&quot;,
+ *            &quot;shape&quot;: &quot;斑鸠与鸬鹚之间&quot;
  *        }
  *    ],
- *    &amp;quot;message&amp;quot;: &amp;quot;ok&amp;quot;
+ *    &quot;message&quot;: &quot;ok&quot;
  *}
- */&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+ */&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;apiDoc的优势在于:&lt;/p&gt;
 
@@ -84,8 +83,9 @@
   &lt;li&gt;除了代码本身,不占用任何资源&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;strong&gt;Get Started&lt;/strong&gt;
-apiDoc基于node.js,所以我们需要一个npm,还没有的同学自己百度怎么下载&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Get Started&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;apiDoc基于node.js,所以我们需要一个npm,还没有的同学自己百度怎么下载&lt;/p&gt;
 
 &lt;p&gt;在shell执行&lt;/p&gt;
 &lt;div&gt;
@@ -95,20 +95,18 @@ apiDoc基于node.js,所以我们需要一个npm,还没有的同学自己百度�
 &lt;p&gt;由于国内网络问题,这个步骤可能需要等待比较长的时间.&lt;/p&gt;
 
 &lt;p&gt;在项目根目录创建apidoc.json(如果是node.js项目,可以直接在package.json中加入apiDoc的配置项),常见的配置为&lt;/p&gt;
-&lt;div&gt;
-  &lt;pre data-line=&quot;&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;{
-  &amp;quot;name&amp;quot;: &amp;quot;example&amp;quot;,
-  &amp;quot;version&amp;quot;: &amp;quot;0.1.0&amp;quot;,
-  &amp;quot;description&amp;quot;: &amp;quot;A basic apiDoc example&amp;quot;
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;example&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;0.1.0&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;A basic apiDoc example&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;在代码中使用注释编写文档(各种语言的注释格式可见&lt;a href=&quot;http://apidocjs.com&quot;&gt;apiDoc&lt;/a&gt;,此处以Java为例),具体语法见&lt;a href=&quot;http://apidocjs.com/#params&quot;&gt;这里&lt;/a&gt;,&lt;a href=&quot;http://blog.csdn.net/soslinken/article/details/50468896&quot;&gt;中文版&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;编写完后,在shell执行&lt;/p&gt;
-&lt;div&gt;
-  &lt;pre data-line=&quot;&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;apidoc -i ./ -o ./doc/&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;apidoc -i ./ -o ./doc/&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;此处参数意义为:&lt;/p&gt;
 &lt;ul&gt;
@@ -117,9 +115,9 @@ apiDoc基于node.js,所以我们需要一个npm,还没有的同学自己百度�
 此时就可以在根目录/doc文件夹看到生成的文档了,打开index.html,就能看到所有的api以group-name的方式升序排列.可以编写脚本直接上传到服务端.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;附一个文档生成结果:&lt;a href=&quot;http://api.ebirdnote.cn/doc&quot;&gt;api.ebirdnote.cn/doc&lt;/a&gt;,这就是通过默认模板生成的RESTful api document,其实apidoc内置了调试器,但是在post请求中无法使用json作为body编码方式,我暂时也没时间解决这个问题,有解决方案的同学欢迎给我发一个链接到&lt;a href=&quot;mailto://i@edzh.me&quot;&gt;我的邮箱&lt;/a&gt;,感激不尽&lt;/p&gt;
+&lt;p&gt;附一个文档生成结果:&lt;a href=&quot;http://api.ebirdnote.cn/doc&quot;&gt;api.ebirdnote.cn/doc&lt;/a&gt;,这就是通过默认模板生成的RESTful api document,其实apidoc内置了调试器,但是在post请求中无法使用json作为body编码方式,我暂时也没时间解决这个问题,有解决方案的同学欢迎给我发一个链接到&lt;a href=&quot;mailto:i@edzh.me&quot;&gt;我的邮箱&lt;/a&gt;,感激不尽&lt;/p&gt;
 </description>
-        <pubDate>Tue, 01 Nov 2016 00:00:00 +0800</pubDate>
+        <pubDate>Wed, 23 Nov 2016 00:00:00 +0800</pubDate>
         <link>http://localhost:4000/2016/11/apiDoc/</link>
         <guid isPermaLink="true">http://localhost:4000/2016/11/apiDoc/</guid>
         
