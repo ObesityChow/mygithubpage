@@ -10,21 +10,17 @@ layout: default
       <h2 class="post-list__post-title post-title"><a href="{{ post.url }}" title="访问 {{ post.title }}">{{ post.title }}</a></h2>
       <p class="excerpt">{{ post.content | strip_html | strip_newlines | truncate: 250 }}&hellip;</p>
       <div class="post-list__meta">
-        <time datetime="{{post.date | date: date_to_xmlschema}}" class="post-list__meta--date date">{{ post.date | date: "%F"}}</time>
+        <time datetime="{{post.date | date: date_to_xmlschema}}" class="post-list__meta--date date">
+          {{ post.date | date: "%F"}}</time>
         <div class = "tag-img-icon">
-          <img src="/assets/images/tag.png" />
+          <img src="assets/images/tag-icon.svg" width="20px" />
         </div>
         <a href="/tags">
           <div class = "post-list-icon-mate">
-            <!-- <span class="post-list__meta--tags" style="background-image: url('/assets/images/tag-bg-left.png') "></span> -->
-            <!-- <img src="/assets/images/tag-bg-left.png" />     -->
-          </div>
-          <div class = "post-list-icon-mate">
-            <!-- <span class="post-list__meta--tags tags" style="background-image: url('/assets/images/tag-bg-right.png') ">{{ post.tags }}</span> -->
-            <span class="post-list__meta--tags tag btn-border-small" >{{ post.tags }}</span>
+            <span class="post-list__meta--tags-right">{{ post.tags }}</span>
           </div>
           <div class = "post-list-small-mate">
-          <a class="btn-border-small" href={{ post.url }}>阅读全文...</a>
+          <a class="btn-border-small" href={{ post.url }}>阅读全文 » </a>
           </div>
       </div>
       <hr class="post-list__divider" />
