@@ -306,6 +306,7 @@ img::-moz-selection {
   color:#fff;
   background:0 0
 }
+
 @media all and (max-width: 600px) {
   .next{
     float:left;
@@ -455,9 +456,11 @@ hr {
 
 .post img {
   max-width: 100%;
+  max-height: 500px;
   margin: 0 auto;
+  margin-left: 0px;
   border-radius: 3px;
-  text-align: center;
+  text-align: left;
   display: block; }
 .post pre {
   width: 95%;
@@ -1327,6 +1330,9 @@ body {
 }
 
 @media all and (max-width: 780px) {
+  .post img {
+    max-height: none;
+  }
   .ih-item.circle .info {
     position: absolute;
     top: 0;
