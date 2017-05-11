@@ -6,8 +6,8 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 11 May 2017 15:14:45 +0800</pubDate>
-    <lastBuildDate>Thu, 11 May 2017 15:14:45 +0800</lastBuildDate>
+    <pubDate>Thu, 11 May 2017 15:35:16 +0800</pubDate>
+    <lastBuildDate>Thu, 11 May 2017 15:35:16 +0800</lastBuildDate>
     <generator>Jekyll v3.3.0</generator>
     
       <item>
@@ -215,29 +215,6 @@
         <guid isPermaLink="true">http://localhost:4000/2016/11/apiDoc/</guid>
         
         <category>coding</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>最近真的很忙</title>
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;作为一个当了学生干部的程序员,我感觉我是精神分裂的状态.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;本来对于博文的内容的定位是不做那些没什么质量的东西.最想做的是对于最近研究的领域(比如Webrtc在iOS上的定制..)的一些研究结果的整理收录,顺便带一点其他技术方面的笔记/资源.这也是开这个博客本来的目的.&lt;/p&gt;
-
-&lt;p&gt;然而,我也不知道,我一个程序员,怎么就当上了学生会主席呢?忙于琐事,无闲研究项目.本来准备写一篇jekyll博客搭建的细节教程,以弥补我看到的教程的缺陷.然而这个计划可能只能推迟一个星期了.&lt;/p&gt;
-
-&lt;p&gt;希望和我交换友链的朋友们.不要删&lt;/p&gt;
-
-&lt;p&gt;23333333&lt;/p&gt;
-</description>
-        <pubDate>Tue, 01 Nov 2016 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2016/11/Forecast/</link>
-        <guid isPermaLink="true">http://localhost:4000/2016/11/Forecast/</guid>
-        
-        <category>瞎逼逼</category>
         
         
       </item>

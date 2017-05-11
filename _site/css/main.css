@@ -344,7 +344,6 @@ color: #666666; }
   text-indent: 10px;
   color: #4F4F4F;
 }
-
 .intro {
   font-family: "ff-tisa-web-pro-1", "ff-tisa-web-pro-2", "Lucida Grande", "Hiragino Sans GB", "Hiragino Sans GB W3", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
   font-size: 1.2em;
@@ -389,10 +388,12 @@ color: #666666; }
   margin-right: 60px;
   padding: 50px 0;
 }
-
+.copyright{
+  text-align: center;
+}
 .footer {
   display: block;
-  padding: 2em 0 0 0;
+  padding: 4em 0 0 0;
   border-top: 2px solid #DDDDDD;
   font-size: .7em;
   color: #b3b3b3; }
