@@ -65,7 +65,7 @@ nav:
 #友情链接
 flink:
     - {title: Neuron Black's Blog, description: Neuron Black的博客, url: 'http://neuronblack.cc'}
-
+    - {title: Jason's Blog, description: JasonelChen - Tencent, url:'https://blog.ijason.cc/'}
 
 # Pagination
 gems: [jekyll-paginate]
