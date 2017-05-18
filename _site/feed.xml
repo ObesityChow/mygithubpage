@@ -6,9 +6,118 @@
 </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 12 May 2017 14:18:46 +0800</pubDate>
-    <lastBuildDate>Fri, 12 May 2017 14:18:46 +0800</lastBuildDate>
+    <pubDate>Thu, 18 May 2017 14:39:13 +0800</pubDate>
+    <lastBuildDate>Thu, 18 May 2017 14:39:13 +0800</lastBuildDate>
     <generator>Jekyll v3.3.0</generator>
+    
+      <item>
+        <title>EZSql | 引子</title>
+        <description>&lt;p&gt;在iOS开发中不可避免地要用到本地存储,通常在小数据量的情况下可以直接使用&lt;code class=&quot;highlighter-rouge&quot;&gt;NSKeyedArchiver&lt;/code&gt;进行对象持久化,然而在数据量大且有复杂操作需求的情景下,&lt;code class=&quot;highlighter-rouge&quot;&gt;NSKeyedArchiver&lt;/code&gt;的性能实在不堪入目. 这时候就有两个选择:&lt;code class=&quot;highlighter-rouge&quot;&gt;CoreData&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;Sqlite&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;CoreData&lt;/code&gt;不用多说,作为亲儿子,基本每次iOS更新都会提供新的Api,性能也在逐步提高,但是考虑到CoreData属于仅用于Apple系设备的编程,学习成本高且不利于跨界.而作为一名程序员或多或少都接触过数据库,此时&lt;code class=&quot;highlighter-rouge&quot;&gt;Sqlite&lt;/code&gt;的优势便凸显而出,同时,在跨平台情况下,&lt;code class=&quot;highlighter-rouge&quot;&gt;Sqlite&lt;/code&gt;的可移植性也是无法忽视的优势.&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;挖了个新坑&lt;/h2&gt;
+
+&lt;p&gt;日常iOS开发中一般使用FMDB操作数据库,但是在日益复杂的需求中,FMDB的Sql语句拼接功能略显羸弱,且市面上大部分框架对树状对象结构支持得都不是很好.&lt;/p&gt;
+
+&lt;p&gt;所以,用惯了MyBatis之后,决定自己造一个类MyBatis的SqlBuilder,起名EZSql,一来丰富简历,二来提供iOS开发中数据库操作的另一个选择&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;功能设计&lt;/h2&gt;
+
+&lt;h3 id=&quot;mapperxml&quot;&gt;Mapper.xml&lt;/h3&gt;
+&lt;p&gt;格式类似Mybatis&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;mapper&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;MyMapper&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;query&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;testSelect&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;resultType=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;House&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        SELECT col1,col2,col3 from myTable
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;if&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;test=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;filter != null&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+            where
+            1=1
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;if&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;test=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;filter.min_col2 != null&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+                and col2 &lt;span class=&quot;ni&quot;&gt;&amp;amp;gt;&lt;/span&gt; #{filter.min_col2}
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;/if&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;if&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;test=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;filter.max_col2 != null&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+                and col2 &lt;span class=&quot;ni&quot;&gt;&amp;amp;lt;&lt;/span&gt; #{filter.min_col2}
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;/if&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;if&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;test=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;filter.col3_options != null&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+                and
+                &lt;span class=&quot;nt&quot;&gt;&amp;lt;foreach&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;collection=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;filter.col3_options&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;separator=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; or &quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;open=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;(&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;close=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;)&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;item=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;option&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+                    ABS(col3 - #{option}) &lt;span class=&quot;ni&quot;&gt;&amp;amp;lt;&lt;/span&gt; 4
+                &lt;span class=&quot;nt&quot;&gt;&amp;lt;/foreach&amp;gt;&lt;/span&gt;
+
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;/if&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/if&amp;gt;&lt;/span&gt;
+
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/query&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/mapper&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;初步准备支持&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;resultMap&amp;gt;&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;query&amp;gt;&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;if&amp;gt;&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;foreach&amp;gt;&lt;/code&gt;标签以及&lt;code class=&quot;highlighter-rouge&quot;&gt;${}&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;#{}&lt;/code&gt;占位符,提供基础的Sql渲染功能&lt;/p&gt;
+
+&lt;h3 id=&quot;protocol&quot;&gt;protocol&lt;/h3&gt;
+&lt;p&gt;EZSql的调用方法和Mybatis十分类似,只需要定义一个和Java中interface作用类似的protocol&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objectivec&quot; data-lang=&quot;objectivec&quot;&gt;@protocol MyMapper &amp;lt;EZSqlMapper&amp;gt;
+- (Model *)testSelect:(NSDictionary *)params; //第一个参数前的方法名必须和xml中query的id对应
+- (void)itemWithNoParams;
+@end&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;使用工厂方法获得Mapper&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objectivec&quot; data-lang=&quot;objectivec&quot;&gt;    id &amp;lt;MyMapper&amp;gt; mapper = [EZSMapperFactory mapperWithProtocol:@protocol(MyMapper)];&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;即可调用protocol的方法了&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objectivec&quot; data-lang=&quot;objectivec&quot;&gt;    [mapper itemWithNoParams];&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;结构设计&lt;/h2&gt;
+
+&lt;p&gt;EZSql分为&lt;code class=&quot;highlighter-rouge&quot;&gt;Parser&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Renderer&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;ResultMap&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;Mapper&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;MapperFactory&lt;/code&gt;几个主要对象.&lt;/p&gt;
+
+&lt;h3 id=&quot;parser&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Parser&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;顾名思义,Parser提供对xml文件的解析,生成ResultMap对象和Renderer对象的不同子类,以供Mapper使用&lt;/p&gt;
+
+&lt;h3 id=&quot;renderer&quot;&gt;Renderer&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Renderer&lt;/code&gt;及其子类负责对SQL语句的具体渲染, 其公有方法为&lt;code class=&quot;highlighter-rouge&quot;&gt;- (NSString *)renderWithParams:(NSDictionary *)&lt;/code&gt;,具体渲染流程如图&lt;/p&gt;
+
+&lt;p&gt;以&lt;code class=&quot;highlighter-rouge&quot;&gt;&quot;SELECT * FROM ${table} WHERE col1 = #{text}&quot;&lt;/code&gt;为例,传入键值对&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-objectivec&quot; data-lang=&quot;objectivec&quot;&gt;    @{
+      @&quot;table&quot;:@&quot;table1&quot;,
+      @&quot;text&quot;:@&quot;text1&quot;
+    }&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://img.nufe-cst.cn/ezsqlrendererpool.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;即针对不同的pattern生成不同的&lt;code class=&quot;highlighter-rouge&quot;&gt;Renderer&lt;/code&gt;对象,由&lt;code class=&quot;highlighter-rouge&quot;&gt;Mapper&lt;/code&gt;进行线性调取,即可完成一次SQL语句的拼接工作.&lt;/p&gt;
+
+&lt;h3 id=&quot;resultmap&quot;&gt;ResultMap&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ResultMap&lt;/code&gt;用于将SQL输出的键值对转换成Model对象.功能类似YYModel.&lt;/p&gt;
+
+&lt;h3 id=&quot;mapper&quot;&gt;Mapper&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Mapper&lt;/code&gt;用于实际消息的转发, 每个XML文件对应一个单例的&lt;code class=&quot;highlighter-rouge&quot;&gt;Mapper&lt;/code&gt;,收到消息后进行对应调用并输出结果.&lt;/p&gt;
+
+&lt;h3 id=&quot;mapperfactory&quot;&gt;MapperFactory&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;MapperFactory&lt;/code&gt;用于Mapper类的创建, 即动态生成Mapper的子类并创建实例进行缓存,这是为了解决不同&lt;code class=&quot;highlighter-rouge&quot;&gt;Protocol&lt;/code&gt;可能存在同名方法的问题,所以针对每个&lt;code class=&quot;highlighter-rouge&quot;&gt;Protocol&lt;/code&gt;, MapperFactory`会调用runtime方法进行Mapper子类的生成. 具体Protocol定义的消息由Mapper进行识别.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;从零开始写框架任重道远. 我会将开发日志在博客上更新, 源码已经托管到&lt;a href=&quot;https://github.com/ObesityChow/EZSql&quot;&gt;Github&lt;/a&gt;,期待有大牛指导我这个小开发仔&lt;/p&gt;
+</description>
+        <pubDate>Tue, 16 May 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/05/ezsql-foreword/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/05/ezsql-foreword/</guid>
+        
+        <category>Tech-iOS</category>
+        
+        
+      </item>
     
       <item>
         <title>面经 | 鹅厂2018届实习生招聘</title>
