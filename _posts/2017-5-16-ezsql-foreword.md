@@ -74,7 +74,7 @@ EZSql的调用方法和Mybatis十分类似,只需要定义一个和Java中interf
 
 EZSql分为`Parser`, `Renderer`, `ResultMap`, `Mapper`, `MapperFactory`几个主要对象.
 
-### `Parser`
+### Parser
 
 顾名思义,Parser提供对xml文件的解析,生成ResultMap对象和Renderer对象的不同子类,以供Mapper使用
 

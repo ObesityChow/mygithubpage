@@ -67,6 +67,8 @@ flink:
     - {title: Neuron Black's Blog, description: Neuron Black的博客, url: 'http://neuronblack.cc'}
     - {title: Jason's Blog, description: JasonelChen - Tencent, url: 'https://blog.ijason.cc/'}
 
+beian: 苏ICP备16015250号
+
 # Pagination
 gems: [jekyll-paginate]
 paginate: 20
