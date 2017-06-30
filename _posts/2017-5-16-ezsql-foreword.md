@@ -91,7 +91,7 @@ EZSql分为`Parser`, `Renderer`, `ResultMap`, `Mapper`, `MapperFactory`几个主
     }
 {% endhighlight %}
 
-![](http://img.nufe-cst.cn/ezsqlrendererpool.png)
+![](//img.edzh.me/43ba6b05e00a27468129fc3a36383722.png)
 
 即针对不同的pattern生成不同的`Renderer`对象,由`Mapper`进行线性调取,即可完成一次SQL语句的拼接工作.
 
